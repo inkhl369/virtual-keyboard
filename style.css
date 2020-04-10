@@ -11,6 +11,7 @@ html {
 
 body {
   max-width: 1020px;
+
   margin: 0 auto;
   background: linear-gradient(to top left, powderblue, pink);
 }
@@ -19,6 +20,7 @@ body {
   background-color: antiquewhite;
   width: 870px;
   resize:none;
+  
   height: 100px;
 }
 
