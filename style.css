@@ -1,0 +1,401 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Lato', sans-serif;
+  scroll-behavior: smooth;
+  font-size: 22px;
+}
+
+body {
+  max-width: 1020px;
+  margin: 0 auto;
+  background: linear-gradient(to top left, powderblue, pink);
+}
+
+.text {
+  background-color: antiquewhite;
+  width: 870px;
+  resize:none;
+  
+  height: 100px;
+}
+
+.button{   
+  user-select: none;
+  background-color: green;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: yellowgreen;
+}
+
+.virt_keyboard .active {
+
+  background-color: yellowgreen;
+  padding: 5px;
+}
+
+.virt_keyboard {
+  
+  background-color: darkkhaki;
+  padding: 8px;
+  grid-gap: 5px;
+  border-radius: 25px;
+  width: 870px;
+  height: 300px;
+  text-align: center;
+  display: grid;
+  
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas:
+    "til _1 _2 _3 _4 _5 _6 _7 _8 _9 _0  _- equally backspace backspace backspace"
+    "tab q w e r t y u i o p _a strongSign slash del del"
+    "caps caps a s d f g h j k l colon quotation_marks enter enter enter"
+    "shift shift shift z x c v b n m comma point question arrow1 Shift_ Shift_"
+    "ctrl win alt space space space space space space space Alt_ Ctrl_ Ctrl_ arrow2 arrow3 arrow4";
+}
+
+._1 {
+  grid-area: _1;
+  display: block;
+}
+._2 {
+  grid-area: _2;
+  display: block;
+}
+._3 {
+  grid-area: _3;
+  display: block;
+}
+
+._4 {
+  grid-area: _4;
+  display: block;
+}
+._5 {
+  grid-area: _5;
+  display: block;
+}
+._6 {
+  grid-area: _6;
+  display: block;
+}
+._7 {
+  grid-area: _7;
+  display: block;
+}
+._8 {
+  grid-area: _8;
+  display: block;
+}
+._9 {
+  grid-area: _9;
+  display: block;
+}
+._0 {
+  grid-area: _0;
+  display: block;
+}
+.til {
+  grid-area: til ;
+  display: block;
+}
+
+._- {
+  grid-area: _-;
+  display: block;
+}
+
+.equally {
+  grid-area:equally;
+  display: block;
+}
+
+.backspace {
+  background-color: darkgreen;
+  grid-area: backspace;
+  display: block;
+}
+
+.tab {
+  background-color: darkgreen;
+  grid-area: tab;
+  display: block;
+}
+
+.q {
+  grid-area: q;
+  display: block;
+}
+
+.w {
+  grid-area: w;
+  display: block;
+}
+
+.e {
+  grid-area: e;
+  display: block;
+}
+
+.r {
+  grid-area: r;
+  display: block;
+}
+
+.t {
+  grid-area: t;
+  display: block;
+}
+
+.y {
+  grid-area: y;
+  display: block;
+}
+
+.u {
+  grid-area: u;
+  display: block;
+}
+
+.i {
+  grid-area: i;
+  display: block;
+}
+
+.o {
+  grid-area: o;
+  display: block;
+}
+
+.p {
+  grid-area: p;
+  display: block;
+}
+
+._a {
+  grid-area: _a;
+  display: block;
+}
+
+.strongSign {
+  grid-area: strongSign;
+  display: block;
+}
+
+.slash {
+  background-color: darkgreen;
+  grid-area: slash;
+  display: block;
+}
+
+.del {
+  background-color: darkgreen;
+  grid-area: del;
+  display: block;
+}
+
+.caps {
+  background-color: darkgreen;
+  grid-area: caps;
+  display: block;
+}
+
+.a {
+  grid-area: a;
+  display: block;
+}
+
+.s {
+  grid-area: s;
+  display: block;
+}
+.d {
+  grid-area: d;
+  display: block;
+}
+.f {
+  grid-area: f;
+  display: block;
+}
+.g {
+  grid-area: g;
+  display: block;
+}
+
+.h {
+  grid-area: h;
+  display: block;
+}
+.j {
+  grid-area: j;
+  display: block;
+}
+.k {
+  grid-area: k;
+  display: block;
+}
+.l {
+  grid-area: l;
+  display: block;
+}
+
+.colon {
+  grid-area: colon;
+  display: block;
+}
+
+.quotation_marks {
+  grid-area: quotation_marks;
+  display: block;
+}
+
+.enter {
+  background-color: darkgreen;
+  grid-area: enter;
+  display: block;
+}
+
+.shift {
+  background-color: darkgreen;
+  grid-area: shift;
+  display: block;
+}
+
+.z {
+  grid-area: z;
+  display: block;
+}
+.x {
+  grid-area: x;
+  display: block;
+}
+.c {
+  grid-area: c;
+  display: block;
+}
+.v {
+  grid-area: v;
+  display: block;
+}
+.b {
+  grid-area: b;
+  display: block;
+}
+.n {
+  grid-area: n;
+  display: block;
+}
+
+.m {
+  grid-area: m;
+  display: block;
+}
+
+.comma {
+  grid-area: comma;
+  display: block;
+}
+.point {
+  grid-area: point;
+  display: block;
+}
+.question {
+  grid-area: question;
+  display: block;
+}
+
+.arrow1 {
+  background-color: darkgreen;
+  grid-area: arrow1;
+  display: block;
+}
+
+.Shift_ {
+  background-color: darkgreen;
+  grid-area: Shift_;
+  display: block;
+}
+
+.ctrl {
+  background-color: darkgreen;
+  grid-area: ctrl;
+  display: block;
+}
+
+.win {
+  background-color: darkgreen;
+  grid-area: win;
+  display: block;
+}
+
+.alt {
+  background-color: darkgreen;
+  grid-area: alt;
+  display: block;
+}
+
+.space {
+  grid-area: space;
+  display: block;
+}
+
+.Alt_ {
+  background-color: darkgreen;
+  grid-area: Alt_;
+  display: block;
+}
+
+.Ctrl_ {
+  background-color: darkgreen;
+  grid-area: Ctrl_;
+  display: block;
+}
+
+.arrow2 {
+  background-color: darkgreen;
+  grid-area: arrow2;
+  display: block;
+}
+
+.arrow3 {
+  background-color: darkgreen;
+  grid-area: arrow3;
+  display: block;
+}
+
+.arrow4 {
+  background-color: darkgreen;
+  grid-area: arrow4;
+  display: block;
+}
+
+p {
+  text-align: center;
+  font-size: 1.2em;
+  background-color: green;
+  width: 870px;
+  background: linear-gradient(135deg, #e55d87 0%, #5fc3e4 100%);
+  color:midnightblue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
