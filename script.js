@@ -416,7 +416,7 @@ function constructVirtKeyboard() {
 
 
 const writeParagr = () => {
-  const p = `<p>Клавиатура была создана на Windows. <br> Переключение языка: ctrl + alt</p>`;
+  const p = `<p>Клавиатура была создана на Windows. <br> Переключение языка: shift + alt</p>`;
   document.body.insertAdjacentHTML("afterbegin", p);
 }
 function constructText() {
