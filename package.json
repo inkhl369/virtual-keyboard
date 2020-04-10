@@ -1,0 +1,24 @@
+{
+  "name": "virtual-keyboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "script.js",
+  "scripts": {
+    "deploy":"gh-pages -d src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inkhl369/virtual-keyboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inkhl369/virtual-keyboard/issues"
+  },
+  "homepage": "https://inkhl369.github.io/virtual-keyboard",
+  "dependencies": {
+    "gh-pages": "^2.2.0"
+  }
+}
