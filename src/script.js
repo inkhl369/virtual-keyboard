@@ -79,7 +79,7 @@ const desc =
 constructText();
 constructVirtKeyboard();
 
-let press_key = '';
+let pressKey = '';
 
 if (localStorage.lang === undefined){
  localStorage.lang = 'eng';
@@ -95,15 +95,14 @@ const virt_keyboard = document.querySelector('.virt_keyboard');
 
 
 class Key {
-  constructor ({code, key, style, ...Rest}) {
+  constructor ({code, key, style}) {
     this.code = code; 
     this.className = `button ${style}`; 
     this.key = key;
   }
 
   generateKey() {
-    let template = '';
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     div.className = this.className; 
     div.dataset.code = this.code;
     div.dataset.key = this.key;
@@ -112,7 +111,7 @@ class Key {
   }
 }
 
-generatorKey();
+createKeyContainers();
 drawKey();
 text.focus();
 
@@ -123,7 +122,7 @@ virt_keyboard.addEventListener('mousedown', function(event) {
   if (event.target.classList[0] === "virt_keyboard") {
     return;
   }
-  press_key = event.target;
+  pressKey = event.target;
   setStyle(event.target, true);
   identifyKey(event.target.dataset, "down");
   drawKey();
@@ -132,10 +131,7 @@ virt_keyboard.addEventListener('mousedown', function(event) {
 
 virt_keyboard.addEventListener('mouseup', function(event) {
   text.focus();
-  if (event.target.dataset.code === "CapsLock") {
-    return;
-  }
-  removeLastPressKeyStyle();
+  removeLastHandlerKeyStyle();
   identifyKey(event.target.dataset, "up");
   drawKey();
 });
@@ -152,10 +148,8 @@ document.addEventListener('keydown', function(event) {
 });
 
 document.addEventListener('keyup', function(event) { 
-  if (event.repeat){
-     return;
-  }
-  if (event.key === "CapsLock") {
+
+  if (event.key === "CapsLock"||event.repeat) {
     return;
   }
   setStyle (document.querySelector(`.${desc[event.code][0]}`), false);
@@ -164,8 +158,8 @@ document.addEventListener('keyup', function(event) {
   drawKey();
  });
 
-function setStyle (code, bool) {
-  if (bool){
+function setStyle (code, enabled) {
+  if (enabled){
      code.classList.add("active");
   }
   else {
@@ -173,27 +167,16 @@ function setStyle (code, bool) {
   }
 }
 
-function removeLastPressKeyStyle () {
-  press_key.classList.remove("active");
+function removeLastHandlerKeyStyle () {
+  pressKey.classList.remove("active");
 }
 
-function capsKeyIsPress() {
-  if (CapsLock === true) {
-    CapsLock = false;
-  } 
-  else {
-    CapsLock = true;
-  } 
-
-  if (ShiftCase === true) {
-    ShiftCase = false;
-  } 
-  else {
-    ShiftCase = true;
-  } 
+function capsKeyIsHandler() {
+  CapsLock = !CapsLock;
+  ShiftCase = !ShiftCase;
 }
 
-function deleteKeyIsPress() {
+function deleteKeyHandler() {
   let arr = text.value.split('');
   let pos = text.selectionStart;
   arr.splice(pos, 1);
@@ -201,7 +184,7 @@ function deleteKeyIsPress() {
   text.selectionStart = text.selectionEnd = pos;
 }
 
-function backspaceKeyIsPress() {
+function backspaceKeyIsHandler() {
   let arr = text.value.split('');
   let pos = text.selectionStart;
   if (pos === 0) {
@@ -212,7 +195,7 @@ function backspaceKeyIsPress() {
   text.selectionStart = text.selectionEnd = pos -1;
 }
 
-function printKeyCode(key) {
+function addLetterToTextarea(key) {
   let arr = text.value.split('');
   let pos = text.selectionStart;
   arr.splice(pos, 0, key);
@@ -223,31 +206,24 @@ function printKeyCode(key) {
 
 function identifyKey(event, updown) {
   if (event.code === "ShiftLeft") {
-    if (ShiftCaseLeft) {
-      ShiftCaseLeft = false;
-    }
-    else {
-      ShiftCaseLeft = true;
-    }
+    ShiftCaseLeft = !ShiftCaseLeft
   }  
-
   if (event.code === "AltLeft") {
-    if (AltCaseLeft) {
-      AltCaseLeft = false;
-    }
-    else{ AltCaseLeft = true;
-    }
+    AltCaseLeft = !AltCaseLeft;
   } 
 
   if (event.code === "CapsLock") {
+    if (event.target.dataset.code === "CapsLock") {
+      return;
+    }
     if (CapsLock === true) {
       setStyle (document.querySelector(`.${desc[event.code][0]}`), false);  
     }
-    capsKeyIsPress();
+    capsKeyIsHandler();
   } 
   
   if (event.key === "Shift" || event.key === "Shift_" || event.key === "shift") {
-    capsKeyIsPress();
+    capsKeyIsHandler();
     return;
   } 
 
@@ -258,34 +234,34 @@ function identifyKey(event, updown) {
     } 
 
     if (event.code === "Backspace") {
-      backspaceKeyIsPress();
+      backspaceKeyIsHandler();
     } 
   
     if (event.code === "Delete") {
-      deleteKeyIsPress();
+      deleteKeyHandler();
     } 
 
     if ( localStorage.lang === 'eng' && ShiftCase === false) {   
         if (desc[event.code][1] !== undefined) {
-          printKeyCode(desc[event.code][1]);
+          addLetterToTextarea(desc[event.code][1]);
         }      
     }
 
     if ( localStorage.lang === 'eng' && ShiftCase === true ) {
         if (desc[event.code][2] !== undefined) {
-          printKeyCode(desc[event.code][2]);
+          addLetterToTextarea(desc[event.code][2]);
         }      
     }
 
     if (localStorage.lang === 'rus' && ShiftCase === false ) {
         if (desc[event.code][3] !== undefined) {
-          printKeyCode(desc[event.code][3]);
+          addLetterToTextarea(desc[event.code][3]);
         }      
     }
 
     if ( localStorage.lang === 'rus' && ShiftCase === true) {
         if (desc[event.code][4] !== undefined) {
-          printKeyCode(desc[event.code][4]);
+          addLetterToTextarea(desc[event.code][4]);
         }      
     }
   }  
@@ -424,17 +400,17 @@ function constructText() {
   document.body.append(textarea);
 }
 
-function generatorKey () {
-  let ar = [];
+function createKeyContainers() {
+  let mas = [];
   let arr = Object.keys(desc);
   arr.forEach(el => {
-     ar.push(new Key({
+     mas.push(new Key({
       code: el,
       key: desc[el][0],
       style: desc[el][0],
     })); 
   });
-   ar.forEach(el => {
+   mas.forEach(el => {
     virt_keyboard.append(el.generateKey());
   }) ; 
 }
